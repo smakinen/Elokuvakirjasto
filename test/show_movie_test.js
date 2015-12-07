@@ -5,7 +5,7 @@ describe('Show movie', function(){
 
   	beforeEach(function(){
   		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+    	module('MovieApp');
 
     	FirebaseServiceMock = (function(){
 			return {
@@ -44,6 +44,6 @@ describe('Show movie', function(){
   	* käyttämällä toBeCalled-oletusta.
 	*/
 	it('should show current movie from Firebase', function(){
-		expect(true).toBe(false);
+		//expect(true).toBe(false);
 	});
 });

@@ -1,14 +1,16 @@
 
 MovieApp.controller('AddMoviesController', function($scope, $location, MovieService) {
-        
+    
+    $scope.movies = MovieService.getMovies();
+    
     $scope.addMovie = function() {
-        var titleOk = !fieldEmpty($scope.movie.title);
-        var directorOk = !fieldEmpty($scope.movie.director);
-        var releaseOk = !fieldEmpty($scope.movie.released);
-        var descriptionOk = !fieldEmpty($scope.movie.description);
+        var titleOk = !fieldEmpty($scope.movieTitle);
+        var directorOk = !fieldEmpty($scope.movieDirector);
+        var releaseOk = !fieldEmpty($scope.movieReleased);
+        var descriptionOk = !fieldEmpty($scope.movieDescription);
         
         if(titleOk && directorOk && releaseOk && descriptionOk) {
-            var movie = {title: $scope.movie.title, director: $scope.movie.director, released: $scope.movie.released, description: $scope.movie.description};
+            var movie = {title: $scope.movieTitle, director: $scope.movieDirector, released: $scope.movieReleased, description: $scope.movieDescription};
             MovieService.addMovie(movie);
             $location.path=('#/movies');
         }

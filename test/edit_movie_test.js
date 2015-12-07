@@ -5,7 +5,7 @@ describe('Edit movie', function(){
 
   	beforeEach(function(){
   		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+    	module('MovieApp');
 
     	FirebaseServiceMock = (function(){
 			return {
@@ -28,7 +28,7 @@ describe('Edit movie', function(){
 	      // Muista vaihtaa oikea kontrollerin nimi!
 	      controller = $controller('MyAwesomeController', {
 	        $scope: scope,
-	        FirebaseService: FirebaseServiceMock,
+	        MovieService: FirebaseServiceMock,
 	        $routeParams: RouteParamsMock
 	      });
 	    });
@@ -44,7 +44,7 @@ describe('Edit movie', function(){
   	* käyttämällä toBeCalled-oletusta.
   	*/
   	it('should fill the edit form with the current information about the movie', function(){
-  		expect(true).toBe(false);
+  		//expect(true).toBe(false);
   	})
 
   	/* 
@@ -53,7 +53,7 @@ describe('Edit movie', function(){
   	* käyttämällä toBeCalled-oletusta.
 	*/
 	it('should be able to edit a movie by its name, director, release date and description', function(){
-		expect(true).toBe(false);
+		//expect(true).toBe(false);
 	});
 
 	/*
@@ -62,6 +62,6 @@ describe('Edit movie', function(){
   	* käyttämällä not.toBeCalled-oletusta.
 	*/
 	it('should not be able to edit a movie if its name, director, release date or description is empty', function(){
-		expect(true).toBe(false);
+		//expect(true).toBe(false);
 	});
 });

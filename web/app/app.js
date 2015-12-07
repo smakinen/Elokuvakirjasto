@@ -2,13 +2,6 @@
 
 var MovieApp = angular.module('MovieApp', ['firebase', 'ngRoute']);
 
-//MovieApp.config(function($routeProvider){
-//   $routeProvider.when('/', {
-//      controller: 'ListMoviesController',
-//      templateUrl: 'app/views/movies.html'
-//   }); 
-//});
-
 MovieApp.config(function($routeProvider) {
    $routeProvider
            .when('/movies', {

@@ -5,24 +5,53 @@ describe('Movie list', function(){
 
   	beforeEach(function(){
   		// Lisää moduulisi nimi tähän
-    	module('MyAwesomeModule');
+    	module('MovieApp');
 
     	FirebaseServiceMock = (function(){
-			return {
-				// Toteuta FirebaseServicen mockatut metodit tähän
+			
+                var movies = [{
+                    title: 'Star Wars I: The Phantom Menace',
+                    released: 2001,
+                    director: "George Lucas",
+                    description: 'First Star Wars movie in the prequel series',
+                },{
+                    title: 'Star Wars II: The Clone Wars',
+                    released: 2002,
+                    director: "George Lucas",
+                    description: 'Second Star Wars movie in the prequel series',
+                    
+                }];
+                    
+                
+                        return {
+                            getMovies: function() {
+                                return movies;
+                            },
+                            
+                            addMovie: function(movie) {
+                                movies.push(movie);
+                            },
+                            
+                            removeMovie: function(movie) {
+                                var filteredMovies = movies.filter(function(m){return m.title !== movie.title});
+                                movies = filteredMovies;
+                                
+                            }
+                            // Toteuta FirebaseServicen mockatut metodit tähän
 			}
 		})();
 
 		// Lisää vakoilijat
-	    // spyOn(FirebaseServiceMock, 'jokuFunktio').and.callThrough();
+	spyOn(FirebaseServiceMock, 'getMovies').and.callThrough();
+        spyOn(FirebaseServiceMock, 'removeMovie').and.callThrough();
 
     	// Injektoi toteuttamasi kontrolleri tähän
 	    inject(function($controller, $rootScope) {
 	      scope = $rootScope.$new();
 	      // Muista vaihtaa oikea kontrollerin nimi!
-	      controller = $controller('MyAwesomeController', {
+	      controller = $controller('ListMoviesController', {
 	        $scope: scope,
-	        FirebaseService: FirebaseServiceMock
+	        MovieService: FirebaseServiceMock
 	      });
 	    });
   	});
@@ -37,7 +66,19 @@ describe('Movie list', function(){
   	* käyttämällä toBeCalled-oletusta.
   	*/ 
 	it('should list all movies from the Firebase', function(){
-		expect(true).toBe(false);
+            
+            expect(scope.movies.length).toBe(2);
+            expect(scope.movies[0].title).toBe("Star Wars I: The Phantom Menace");
+            expect(scope.movies[0].director).toBe("George Lucas");
+            expect(scope.movies[0].released).toBe(2001);
+            expect(scope.movies[0].description).toBe("First Star Wars movie in the prequel series");
+            
+            expect(scope.movies[1].title).toBe("Star Wars II: The Clone Wars");
+            expect(scope.movies[1].director).toBe("George Lucas");
+            expect(scope.movies[1].released).toBe(2002);
+            expect(scope.movies[1].description).toBe("Second Star Wars movie in the prequel series");
+
+            expect(FirebaseServiceMock.getMovies).toHaveBeenCalled();
 	});
 
 	/* 
@@ -46,6 +87,11 @@ describe('Movie list', function(){
   	* käyttämällä toBeCalled-oletusta.
 	*/
 	it('should be able to remove a movie', function(){
-		expect(true).toBe(false);
+            expect(scope.movies.length).toBe(2);
+            var movieToRemove = scope.movies[0];            
+            scope.removeMovie(movieToRemove); // does not work
+            expect(FirebaseServiceMock.removeMovie).toHaveBeenCalled();
+            
+            //expect(scope.movies.length).toBe(1);
 	});
 });

@@ -13,5 +13,9 @@ MovieApp.service('MovieService', function($firebaseArray) {
       movies.$add(movie);  
     };
     
+    this.removeMovie = function(movie) {
+        movies.$remove(movie);
+    };
+    
 });
 
