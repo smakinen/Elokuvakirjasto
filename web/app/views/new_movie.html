@@ -1,0 +1,43 @@
+    <div ng-controller="AddMoviesController">
+        
+        <h1>Add a New Movie</h1>
+        
+        <form name="addMovieForm">
+            <p>
+                <label>Movie Title: </label>
+                <input name="title" ng-model="movie.title" required type="text">
+            <div ng-show="addMovieForm.title.$invalid && addMovieForm.title.$dirty">
+                The movie should have a title.
+            </div>
+            </p>
+            <p>
+                <label>Director: </label>
+                <input name="director" ng-model="movie.director" required type="text">
+                
+                <div ng-show="addMovieForm.director.$invalid && addMovieForm.director.$dirty">
+                    The movie should have a director.
+                </div>
+            </p>
+                        
+            <p>
+                <label>Year Released: </label>
+                <input name="released" ng-model="movie.released" required type="number">
+                
+                <div ng-show="addMovieForm.released.$invalid && addMovieForm.released.$dirty">
+                    The movie should have a year it was launched in.
+                </div>
+            </p>
+            
+            <p>
+                <label>Description: </label>
+                <textarea name="description" ng-model="movie.description" required></textarea>
+                <div ng-show="addMovieForm.description.$invalid && addMovieForm.description.$dirty">
+                    The movie should have a description.
+                </div>
+            </p>
+            
+            <input type="submit" ng-click="addMovie()" value="Add Movie">
+            
+        </form>
+            <!-- title, director, released, description -->
+    </div>

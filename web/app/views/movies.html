@@ -1,0 +1,11 @@
+    <div ng-controller="ListMoviesController">
+        
+        <h1>Movies</h1>
+        
+        <div ng-repeat="movie in movies">
+            <h3>{{movie.title}} ({{movie.released}})</h3>
+            <p>{{movie.description}}</p>
+            <h4>Director</h4>
+            <p>{{movie.director}}</p>
+        </div>
+    </div>
